@@ -1,0 +1,150 @@
+
+<mat-horizontal-stepper    #stepper>
+  <mat-step >
+    <ng-template matStepLabel>Registro Covid-19</ng-template>
+      <div class="card">
+        <samp style="color: #53565a;">
+          <h1 style="color: #0033a0; font-family: Barlow,sans-serif;"> Esta heramienta ayudara a las empresas a comprender qué hacer a continuacion con respecto al COVID-19.</h1>
+          Autorizo a Suramericana SA. y a mi empleador el tratamiento de mis datos personales, incluyendo los del la salud que son sensibles, con la
+          finalidad de desarrollar acciones  de promoción, prevencíon tratamientos para  la gestion d riesgo en la salud y/o frente a la propagacion, contagio y
+          control de COVID-19, acorde con lo normado por el ministerio de Salud y Protección Social y las demas autoridades competentes, y para las demás se
+          se encuentran  los canales  de canales de contacto,  y la forma de ejercer mis derechos a la revocar las autorizacion, conocer,actulizar,rectificar y suprimir mi informacion<br><br>
+
+          Será posible compartir informacion con distintas entidades públicas (del nivel central, descentralizadas  y de vigilancia y control, de los demás autoridades administrativas y juridicas
+          ), para tomar acciones frente a la propagación, contagio y control de COVID-19. <br><br>
+          Se entiende como tratamiento de datos, la facultad que tendrán Suramericana S.A. y el empleador de almacenar, compartir, utilizar, procesar, recolectar, divulgar,tranferir, transmitir, informacion relacionada con el estado de salud, en cumplimiento de las disposiciones legales.
+        </samp>
+    </div>
+
+    <div>
+      <button  class="button" mat-button matStepperNext>Si,Autorizo</button>
+    </div>
+  </mat-step>
+
+  <mat-step [stepControl]="form" errorMessage="Campo es Requerido.">
+    <form [formGroup]="form">
+      <ng-template matStepLabel>informacion de contacto</ng-template>
+      <div class="card">
+      <mat-form-field appearance="fill">
+        <mat-label>Tipo Documento</mat-label>
+        <mat-select formControlName="tipoDocumento">
+          <mat-option  *ngFor="let tipo of tipos" [value]="tipo.value">
+            {{tipo.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+<br><br>
+       <mat-form-field>
+        <mat-label>Documento</mat-label>
+        <input matInput placeholder="Documento"  type="number" formControlName="numeroDocumento" required>
+      </mat-form-field>
+<br><br>
+      <mat-form-field>
+        <mat-label> Nombre</mat-label>
+        <input matInput placeholder="Nombre Completo" formControlName="nombre" required>
+      </mat-form-field>
+
+    </div>
+<br>
+      <div>
+        <button class="button" mat-button matStepperNext> Siguiente </button>
+      </div>
+    </form>
+  </mat-step>
+
+  <mat-step [stepControl]="form" errorMessage="Campo es Requerido.">
+    <div class="card">
+    <form [formGroup]="form">
+      <ng-template matStepLabel>Informacion general</ng-template>
+
+
+        <mat-label style="text-align-last: center;"> <h2> ¿Has tenido alguno de los siguientes sintomas en las últimas 24 horas? </h2></mat-label>
+
+      <mat-radio-group formControlName="dolorGarganta" aria-label="Select an option">
+        <hr>
+        <p>¿Tienes dolor de garganta?</p>
+        <mat-radio-button  value="si">si</mat-radio-button>
+        <mat-radio-button  value="no">no</mat-radio-button>
+      </mat-radio-group>
+
+      <mat-radio-group formControlName="malestarGeneral" aria-label="Select an option">
+        <hr>
+        <p>¿Tienes malestar general o esclofrios que  te limite las actividades de la vida diaria?</p>
+        <mat-radio-button  value="si">si</mat-radio-button>
+        <mat-radio-button  value="no">no</mat-radio-button>
+      </mat-radio-group>
+
+      <mat-radio-group formControlName="dolorHueso" aria-label="Select an option">
+        <hr>
+        <p>¿Tienes dolor muscular o en los huesos?</p>
+        <mat-radio-button  value="si">si</mat-radio-button>
+        <mat-radio-button  value="no">no</mat-radio-button>
+      </mat-radio-group>
+
+      <mat-radio-group formControlName="fiebre" aria-label="Select an option">
+        <hr>
+        <p>¿Tienes Fiebre ?(mayor 38°C, medida con termometro)</p>
+        <mat-radio-button  value="si">si</mat-radio-button>
+        <mat-radio-button value="no">no</mat-radio-button>
+      </mat-radio-group>
+
+      <mat-radio-group  formControlName="tos"aria-label="Select an option">
+        <hr>
+        <p>¿Tienes tos seca y persitente?</p>
+        <mat-radio-button value="si">si</mat-radio-button>
+        <mat-radio-button  value="no">no</mat-radio-button>
+      </mat-radio-group>
+
+       <mat-radio-group formControlName="dificultadRespirar" aria-label="Select an option">
+        <hr>
+        <p>¿Tienes dificultad a respirar de inicio reciente?</p>
+        <mat-radio-button value="si">si</mat-radio-button>
+        <mat-radio-button value="no">no</mat-radio-button>
+      </mat-radio-group>
+
+      <div>
+        <button class="button" mat-button matStepperPrevious>Atras</button>
+        <button class="btn"  (click)="create()" mat-button matStepperNext>Guardar</button>
+      </div>
+    </form>
+  </div>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel></ng-template>
+    <div>
+      <br>
+
+<h1  style="color: #0033a0;">Gracias por tus respuestas.</h1>
+      <p >
+        {{ currentDate | date:'dd-MM-yyyy HH:mm' }}
+      </p>
+      <p>Nuestra principal invitacióon a que mantengas la calma.</p>
+      <p><em>Ten en cuneta que la información a continuación no sustituye un diagnóstico ni una prescripción médica.</em></p>
+
+
+      <div class="card">
+        <p style="color: black;"> <strong style="color: rgb(31, 102, 21);">puedes asistir a tu sitio de trbajo. </strong>Hoy no has reportado sintomas de Covid-19. si estás, trabajando de manera remota, cotinúa con tus actividades normales y recuerda que debes diligenciar la encuesta de sintomas diariamente y cumplir las medidad de preveención para disminuir la posibilidad de contagio:
+<br><br>
+
+  <mat-list >
+    <mat-list-item> > Utiliza Siempre el tapa bocas,</mat-list-item>
+    <mat-list-item> > Evita tocar el tapabocas.</mat-list-item>
+    <mat-list-item> > evita comer.</mat-list-item>
+    <mat-list-item> > alimentos en la calle.</mat-list-item>
+    <mat-list-item> > evita tocarte la cara.</mat-list-item>
+    <mat-list-item> > Recuerda lavarte las manos con agua y jabón con frecuencias en especial al llegar atu trabajo y al llegar tu casa, antes de comer o tomar algo y antes de colocarte o retirarte el tapabocas.</mat-list-item>
+    <mat-list-item> > El tapabocas de tela debes lavarlo con agua y jabón despuesde usarlo</mat-list-item>
+    <mat-list-item> > Si has tenido resultados positivos de la prueba de COVID-19 en los ultimos 15 dias,debes informar el resultado y la conducta medica a tu empleador, y debes cumplir el aislamiento que te han indicado</mat-list-item>
+
+  </mat-list>
+</p>
+      </div>
+      <button class="button" mat-button matStepperPrevious>Atras</button>
+      <button class="btn" mat-button    (click)="stepper.reset()">Finalizar</button>
+    </div>
+  </mat-step>
+
+</mat-horizontal-stepper>
